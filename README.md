@@ -9,16 +9,23 @@
 
 ---
 
-## 📌 Table of Contents
+## 📑 Table of Contents
 
-- [About the Project](#about-the-project)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [API Endpoints](#api-endpoints)
-- [How It Works](#how-it-works)
-- [Team](#team)
+### 📌 Overview
+- [📖 About the Project](#about-the-project)
+- [✨ Features](#features)
+- [🛠 Tech Stack](#tech-stack)
+
+### 🏗 Architecture & Design
+- [📂 Project Structure](#project-structure)
+- [⚙️ How It Works](#how-it-works)
+
+### 🚀 Usage
+- [▶️ Getting Started](#getting-started)
+- [🔌 API Endpoints](#api-endpoints)
+
+### 👥 Team & Contribution
+- [🤝 Team](#team)
 
 ---
 
