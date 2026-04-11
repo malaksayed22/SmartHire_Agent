@@ -27,4 +27,4 @@ def get_top_candidates(candidates: list, top_n: int = 5) -> list:
 
 
 if __name__ == "__main__":
-    print("Ranker ready!")
+    print("Ranker ready")
