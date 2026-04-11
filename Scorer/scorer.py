@@ -46,4 +46,4 @@ Reply ONLY with this exact JSON format, no extra text, no markdown:
 
 
 if __name__ == "__main__":
-    print("Scorer ready!")
+    print("Scorer ready")

@@ -137,4 +137,4 @@ def run_agent(task: str, **kwargs) -> dict:
 
 
 if __name__ == "__main__":
-    print("Agent ready!")
+    print("Agent ready")
