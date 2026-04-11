@@ -50,6 +50,7 @@ Instead of HR staff manually reading every resume, the SmartHire agent:
 ## 📁 Project Structure
 
 ```smarthire-agent/
+
 │
 ├── Agent/
 │   ├── agent.py             ← ReAct loop (the brain)
@@ -83,6 +84,7 @@ Instead of HR staff manually reading every resume, the SmartHire agent:
 - Python 3.10+
 - Groq API key (free at [https://console.groq.com](https://console.groq.com))
 
+```
 <!--### Installation
 
 **1. Clone the repository**
