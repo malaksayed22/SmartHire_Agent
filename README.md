@@ -76,7 +76,6 @@ Instead of HR staff manually reading every resume, the SmartHire agent:
 ├── .env                     ← API keys (not pushed to GitHub)
 └── .gitignore               ← Ignored files
 
----
 ```
 ## 🚀 Getting Started
 
