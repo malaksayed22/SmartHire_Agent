@@ -49,28 +49,40 @@ Instead of HR staff manually reading every resume, the SmartHire agent:
 
 ## 📁 Project Structure
 
-```
-smarthire-agent/
+```smarthire-agent/
+
 │
-├── main.py              ← FastAPI server (entry point)
-├── agent.py             ← ReAct loop (the brain)
-├── resume_reader.py     ← Tool 1: extract text from PDF/DOCX
-├── scorer.py            ← Tool 2: score resume 0-100
-├── ranker.py            ← Tool 3: sort candidates by score
-├── chatbot.py           ← Tool 4: answer job questions
-├── memory.py            ← Conversation and session memory
-├── requirements.txt     ← All dependencies
-├── .env                 ← API keys (not pushed to GitHub)
-└── .gitignore           ← Ignored files
+├── Agent/
+│   ├── agent.py             ← ReAct loop (the brain)
+│   └── test_agent.py        ← Agent tests
+│
+├── Chatbot/
+│   ├── chatbot.py           ← Tool 4: answer job questions
+│   └── test_chatbot.py      ← Chatbot tests
+│
+├── Ranker/
+│   ├── ranker.py            ← Tool 3: sort candidates by score
+│   └── test_ranker.py       ← Ranker tests
+│
+├── Scorer/
+│   ├── scorer.py            ← Tool 2: score resume 0-100
+│   └── test_scorer.py       ← Scorer tests
+│
+├── main.py                  ← FastAPI server (entry point)
+├── memory.py                ← Conversation and session memory
+├── resume_reader.py         ← Tool 1: extract text from PDF/DOCX
+├── requirements.txt         ← All dependencies
+├── Procfile                 ← Deployment configuration
+├── .env                     ← API keys (not pushed to GitHub)
+└── .gitignore               ← Ignored files
+
 ```
-
----
-
 ## 🚀 Getting Started
 
 ### Prerequisites
 - Python 3.10+
 - Groq API key (free at [https://console.groq.com](https://console.groq.com))
+
 
 <!--### Installation
 

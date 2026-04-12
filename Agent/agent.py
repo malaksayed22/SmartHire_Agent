@@ -2,7 +2,7 @@ from groq import Groq
 from dotenv import load_dotenv
 import os
 import json
-
+ 
 from resume_reader import extract_text
 from scorer import score_resume
 from ranker import rank_candidates, get_top_candidates
@@ -137,4 +137,4 @@ def run_agent(task: str, **kwargs) -> dict:
 
 
 if __name__ == "__main__":
-    print("Agent ready!")
+    print("Agent ready")
