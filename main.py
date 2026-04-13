@@ -84,6 +84,10 @@ app.add_middleware(
 )
 
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 @app.get("/", dependencies=[Depends(require_api_key)])
 def home():
     return {
