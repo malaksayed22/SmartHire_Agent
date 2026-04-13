@@ -49,177 +49,29 @@ Instead of HR staff manually reading every resume, the SmartHire agent:
 
 ## 📁 Project Structure
 
-```smarthire-agent/
-
-│
-├── Agent/
-│   ├── agent.py             ← ReAct loop (the brain)
-│   └── test_agent.py        ← Agent tests
-│
-├── Chatbot/
-│   ├── chatbot.py           ← Tool 4: answer job questions
-│   └── test_chatbot.py      ← Chatbot tests
-│
-├── Ranker/
-│   ├── ranker.py            ← Tool 3: sort candidates by score
-│   └── test_ranker.py       ← Ranker tests
-│
-├── Scorer/
-│   ├── scorer.py            ← Tool 2: score resume 0-100
-│   └── test_scorer.py       ← Scorer tests
-│
-├── main.py                  ← FastAPI server (entry point)
-├── memory.py                ← Conversation and session memory
-├── resume_reader.py         ← Tool 1: extract text from PDF/DOCX
-├── requirements.txt         ← All dependencies
-├── Procfile                 ← Deployment configuration
-├── .env                     ← API keys (not pushed to GitHub)
-└── .gitignore               ← Ignored files
-
 ```
+smarthire-agent/
+│
+├── main.py              ← FastAPI server (entry point)
+├── agent.py             ← ReAct loop (the brain)
+├── resume_reader.py     ← Tool 1: extract text from PDF/DOCX
+├── scorer.py            ← Tool 2: score resume 0-100
+├── ranker.py            ← Tool 3: sort candidates by score
+├── chatbot.py           ← Tool 4: answer job questions
+├── memory.py            ← Conversation and session memory
+├── requirements.txt     ← All dependencies
+├── .env                 ← API keys (not pushed to GitHub)
+└── .gitignore           ← Ignored files
+```
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
 - Python 3.10+
 - Groq API key (free at [https://console.groq.com](https://console.groq.com))
 
-
-<!--### Installation
-
-**1. Clone the repository**
-```bash
-git clone https://github.com/your-username/smarthire-agent.git
-cd smarthire-agent
-```
-
-**2. Create and activate virtual environment**
-```bash
-python -m venv venv
-
-# Windows:
-venv\Scripts\activate
-
-# Mac/Linux:
-source venv/bin/activate
-```
-
-**3. Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-**4. Create your `.env` file**
-```env
-GROQ_API_KEY=your-groq-api-key-here
-```
-
-**5. Run the server**
-```bash
-uvicorn main:app --reload
-```
-
-**6. Open API docs in browser**
-```
-http://localhost:8000/docs
-```
-
----
-
-## 📡 API Endpoints
-
-### `GET /`
-Check if the agent is running.
-
-**Response:**
-```json
-{
-  "message": "SmartHire AI Agent is running!",
-  "version": "1.0.0",
-  "endpoints": [
-    "POST /score-resume",
-    "POST /rank-candidates",
-    "POST /chat"
-  ]
-}
-```
-
----
-
-### `POST /score-resume`
-Upload a resume and job description to get an AI score.
-
-**Form Data:**
-| Field | Type | Description |
-|---|---|---|
-| `file` | File | Resume in PDF or DOCX format |
-| `job_description` | String | The job requirements text |
-
-**Response:**
-```json
-{
-  "task": "score",
-  "result": {
-    "score": 85,
-    "strengths": ["Strong Python skills", "ML experience"],
-    "weaknesses": ["No leadership experience"],
-    "summary": "Strong AI engineer candidate with relevant experience"
-  }
-}
-```
-
----
-
-### `POST /rank-candidates`
-Rank a list of candidates by their scores.
-
-**Form Data:**
-| Field | Type | Description |
-|---|---|---|
-| `candidates` | JSON String | List of candidates with scores |
-| `top_n` | Integer | Number of top candidates to return |
-
-**Request example:**
-```json
-[
-  {"name": "Sara Ali",   "score": 91, "summary": "Senior ML engineer"},
-  {"name": "Omar Hassan","score": 78, "summary": "Backend developer"},
-  {"name": "Nour Ahmed", "score": 85, "summary": "AI engineer"}
-]
-```
-
-**Response:**
-```json
-{
-  "task": "rank",
-  "result": [
-    {"rank": 1, "name": "Sara Ali",   "score": 91},
-    {"rank": 2, "name": "Nour Ahmed", "score": 85},
-    {"rank": 3, "name": "Omar Hassan","score": 78}
-  ]
-}
-```
-
----
-
-### `POST /chat`
-Ask the AI chatbot a question about a specific job.
-
-**Form Data:**
-| Field | Type | Description |
-|---|---|---|
-| `job_description` | String | The job posting text |
-| `question` | String | The candidate's question |
-
-**Response:**
-```json
-{
-  "task": "chat",
-  "result": {
-    "answer": "The salary for this position is between 15,000 - 25,000 EGP per month."
-  }
-}
-```
--->
 ---
 
 ## 🧠 How It Works — ReAct Agent Loop
