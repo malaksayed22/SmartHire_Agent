@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 import json
 import sys
-
+ 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from resume_reader import extract_text
