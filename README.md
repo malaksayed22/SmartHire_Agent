@@ -26,12 +26,6 @@ Instead of HR staff manually reading every resume, the SmartHire agent:
 | Feature | Description |
 |---|---|
 | 📄 Resume Reader | Extracts text from PDF and DOCX files |
-| 🎯 Scoring Engine | AI scores resume vs job description (0–100) |
-| 🏆 Ranker | Sorts candidates by score automatically |
-| 💬 Chatbot | Answers candidate questions about the job |
-| 🔄 ReAct Agent | Think → Act → Observe decision loop |
-| 🚀 REST API | FastAPI server with full Swagger documentation |
-
 | 🎯 Scoring Engine | AI scores resume vs job description (0–100) with strengths, weaknesses, experience level, and recommended action |
 | 🏆 Ranker | Sorts candidates by score automatically and returns top N |
 | 💬 Chatbot | Answers candidate questions professionally with strict job-only rules |
@@ -98,15 +92,6 @@ Input received
 
 **Example flow for scoring a resume:**
 ```
-[THINK]   → I need to extract text from the resume first
-[ACT]     → Calls resume_reader.extract_text()
-[OBSERVE] → Got 2,400 characters of text
-[THINK]   → Now I need to score it against the job description
-[ACT]     → Calls scorer.score_resume()
-[OBSERVE] → Score received: 85/100
-[DONE]    → Return result to API
-```
-
 [AGENT]   → SmartHire AI Agent — Task: SCORE
 [THINK]   → I need to extract the resume text before I can evaluate the candidate
 [ACT]     → Calling resume_reader...
