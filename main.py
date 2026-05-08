@@ -28,6 +28,7 @@ configure_import_paths()
 
 from agent import run_agent
 
+
 def load_env_file(env_path: str = ".env") -> None:
     if not os.path.exists(env_path):
         return
@@ -57,6 +58,7 @@ def require_api_key(api_key: str | None = Security(api_key_header)) -> str:
             detail="Invalid or missing API key"
         )
     return api_key
+
 
 app = FastAPI(
     title="SmartHire AI Agent",
@@ -88,6 +90,7 @@ app.add_middleware(
 def health():
     return {"status": "ok"}
 
+
 @app.get("/", dependencies=[Depends(require_api_key)])
 def home():
     return {
@@ -99,6 +102,7 @@ def home():
             "POST /chat"
         ]
     }
+
 
 @app.post("/score-resume", dependencies=[Depends(require_api_key)])
 async def score_resume(
@@ -112,15 +116,15 @@ async def score_resume(
         with open(temp_path, "wb") as f:
             shutil.copyfileobj(file.file, f)
 
-        result = run_agent(
+        return run_agent(
             "score",
             file_path=temp_path,
             job_description=job_description
         )
-        return result
     finally:
         if os.path.exists(temp_path):
             os.remove(temp_path)
+
 
 @app.post("/rank-candidates", dependencies=[Depends(require_api_key)])
 async def rank_candidates(
@@ -130,29 +134,31 @@ async def rank_candidates(
     try:
         candidates_list = json.loads(candidates)
     except json.JSONDecodeError as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="`candidates` must be valid JSON") from exc
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="`candidates` must be valid JSON"
+        ) from exc
 
     if not isinstance(candidates_list, list):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="`candidates` must be a JSON array")
-    
-    result = run_agent(
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="`candidates` must be a JSON array"
+        )
+
+    return run_agent(
         "rank",
         candidates=candidates_list,
         top_n=top_n
     )
-    
-    return result
+
 
 @app.post("/chat", dependencies=[Depends(require_api_key)])
 async def chat(
     job_description: str = Form(...),
     question: str = Form(...)
 ):
-    result = run_agent(
+    return run_agent(
         "chat",
         job_description=job_description,
         question=question
     )
-    
-    return result
-
