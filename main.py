@@ -46,7 +46,10 @@ load_env_file()
 
 EXPECTED_API_KEY = os.getenv("SMARTHIRE_API_KEY")
 if not EXPECTED_API_KEY:
-    raise RuntimeError("SMARTHIRE_API_KEY is missing. Set it in .env before starting the API.")
+    raise RuntimeError(
+        "SMARTHIRE_API_KEY is required. On Railway: set Variable SMARTHIRE_API_KEY on the "
+        "SmartHire_Agent service (and the same value as AGENT_API_KEY or SMARTHIRE_API_KEY on intelligent-cv)."
+    )
 
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
@@ -72,13 +75,17 @@ ALLOWED_CORS_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://smarthire-rho.vercel.app",
+    "https://smart-hire-build.vercel.app",
     "https://intelligent-cv-production.up.railway.app",
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_CORS_ORIGINS,
-    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?$",
+    allow_origin_regex=(
+        r"https?://(localhost|127\.0\.0\.1)(:\d+)?$"
+        r"|^https://smart-hire-build[a-z0-9-]*(?:-[a-z0-9-]+)*\.vercel\.app$"
+    ),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
