@@ -32,6 +32,11 @@ Instead of HR staff manually reading every resume, the SmartHire agent:
 | 🔄 ReAct Agent | Think → Act → Observe decision loop |
 | 🚀 REST API | FastAPI server with full Swagger documentation |
 
+| 🎯 Scoring Engine | AI scores resume vs job description (0–100) with strengths, weaknesses, experience level, and recommended action |
+| 🏆 Ranker | Sorts candidates by score automatically and returns top N |
+| 💬 Chatbot | Answers candidate questions professionally with strict job-only rules |
+| 🔄 ReAct Agent v1.1 | Upgraded Think → Act → Observe loop with full reasoning, validation, and memory logs |
+| 🚀 REST API | FastAPI server with full Swagger documentation |
 ---
 
 ## 🛠️ Tech Stack
@@ -102,6 +107,16 @@ Input received
 [DONE]    → Return result to API
 ```
 
+[AGENT]   → SmartHire AI Agent — Task: SCORE
+[THINK]   → I need to extract the resume text before I can evaluate the candidate
+[ACT]     → Calling resume_reader...
+[OBSERVE] → Successfully extracted 3,706 characters. Resume is ready for evaluation.
+[THINK]   → Resume text is ready. Now I need to evaluate it against the job description.
+[ACT]     → Calling scorer...
+[OBSERVE] → Score: 82/100. Experience: Junior. Recommended action: Consider.
+[THINK]   → Score of 82/100 with 3 strengths and 2 weaknesses. Complete
+[DONE]    → Task 'score' completed successfully
+```
 ---
 
 ## 👥 Team

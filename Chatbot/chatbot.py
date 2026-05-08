@@ -8,21 +8,27 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 conversation_history = []
 
+
 def chat_with_bot(job_description: str, question: str, keep_history: bool = True) -> str:
-    
-    system_prompt = f"""You are a helpful HR assistant for a company.
-Your job is to answer candidate questions about the following job ONLY.
-If someone asks anything not related to this job, politely say:
-'I can only answer questions about this specific job posting.'
+    system_prompt = f"""
+You are a professional and friendly HR assistant for SmartHire.
+Your role is to help job candidates understand the position they are applying for.
+
+STRICT RULES:
+1. ONLY answer questions directly related to this job posting.
+2. If asked anything unrelated, say: "I can only answer questions about this specific job."
+3. If information is not in the job description, say: "This detail was not included in the job posting. I recommend contacting HR directly."
+4. Never make up salary, benefits, or requirements that are not stated.
+5. Keep answers short, clear, and professional — max 3 sentences.
+6. Always be warm, encouraging, and professional in tone.
+7. If a candidate seems frustrated, acknowledge their concern before answering.
+8. If a candidate greets you, greet them back warmly before answering.
+9. Always end your response with an offer to help further.
 
 JOB DESCRIPTION:
 {job_description}
 
-Rules:
-- Be friendly and professional
-- Keep answers short and clear
-- Never make up information not in the job description
-- If info is not in the job description, say 'This information was not provided in the job posting'
+Remember: You represent SmartHire professionally. Every response reflects our brand.
 """
 
     if keep_history:
@@ -40,7 +46,7 @@ Rules:
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=messages,
-        temperature=0.5
+        temperature=0.4
     )
 
     answer = response.choices[0].message.content.strip()
@@ -55,7 +61,7 @@ Rules:
 
 
 def reset_conversation():
-    """Clear conversation history"""
+    """Clear conversation history for a new session."""
     global conversation_history
     conversation_history = []
 

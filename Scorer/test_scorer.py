@@ -1,14 +1,18 @@
-from resume_reader import extract_text
-from scorer import score_resume
+import os
+import sys
 
-#Read CV
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from resume_reader import extract_text
+from Scorer.scorer import score_resume
+
+
 print("Reading CV...")
 resume_text = extract_text("D:/Nour El-Rouby CV.pdf")
 print("CV loaded successfully")
 
-#Define a job description
 job_description = """
-We are looking for a AI Engineer with:
+We are looking for an AI Engineer / LLM Specialist with:
 - Strong Python programming skills
 - Experience with Machine Learning and Deep Learning
 - Knowledge of NLP and text processing
@@ -18,18 +22,21 @@ We are looking for a AI Engineer with:
 - Bachelor's degree in Computer Science or related field
 """
 
-#Score the resume
-print("\n(Scoring your CV against the job)")
+print("\nScoring your CV against the job...")
 result = score_resume(resume_text, job_description)
 
-#result
-print("\n==========> SCORING RESULT <==========")
-print(f"Score:    {result['score']} / 100")
-print(f"\nSummary:  {result['summary']}")
+print("\n=========> SCORING RESULT <=========")
+print(f"Score:               {result['score']} / 100")
+print(f"Experience Level:    {result['experience_level']}")
+print(f"Recommended Action:  {result['recommended_action']}")
+print(f"\nSummary:\n  {result['summary']}")
+
 print("\nStrengths:")
-for s in result['strengths']:
+for s in result["strengths"]:
     print(f"  + {s}")
+
 print("\nWeaknesses:")
-for w in result['weaknesses']:
+for w in result["weaknesses"]:
     print(f"  - {w}")
+
 print("=====================================")
