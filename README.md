@@ -91,7 +91,7 @@ Input received
 ```
 
 **Example flow for scoring a resume:**
-
+```
 [AGENT]   → SmartHire AI Agent — Task: SCORE
 [THINK]   → I need to extract the resume text before I can evaluate the candidate
 [ACT]     → Calling resume_reader...
