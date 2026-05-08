@@ -26,12 +26,6 @@ Instead of HR staff manually reading every resume, the SmartHire agent:
 | Feature | Description |
 |---|---|
 | 📄 Resume Reader | Extracts text from PDF and DOCX files |
-| 🎯 Scoring Engine | AI scores resume vs job description (0–100) |
-| 🏆 Ranker | Sorts candidates by score automatically |
-| 💬 Chatbot | Answers candidate questions about the job |
-| 🔄 ReAct Agent | Think → Act → Observe decision loop |
-| 🚀 REST API | FastAPI server with full Swagger documentation |
-
 | 🎯 Scoring Engine | AI scores resume vs job description (0–100) with strengths, weaknesses, experience level, and recommended action |
 | 🏆 Ranker | Sorts candidates by score automatically and returns top N |
 | 💬 Chatbot | Answers candidate questions professionally with strict job-only rules |
