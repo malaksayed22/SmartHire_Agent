@@ -91,15 +91,6 @@ Input received
 ```
 
 **Example flow for scoring a resume:**
-```
-[THINK]   → I need to extract text from the resume first
-[ACT]     → Calls resume_reader.extract_text()
-[OBSERVE] → Got 2,400 characters of text
-[THINK]   → Now I need to score it against the job description
-[ACT]     → Calls scorer.score_resume()
-[OBSERVE] → Score received: 85/100
-[DONE]    → Return result to API
-```
 
 [AGENT]   → SmartHire AI Agent — Task: SCORE
 [THINK]   → I need to extract the resume text before I can evaluate the candidate
